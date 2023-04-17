@@ -1,0 +1,20 @@
+.symbolpallete{
+    position:fixed;
+    top:230px;
+    left:40px;
+    background-color: white;
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow:0px 0px 10px -3px rgba(0,0,0,0.4);
+    z-index: 10;
+    /* display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-basis: 33.33%; */
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    align-content: center;
+}
+

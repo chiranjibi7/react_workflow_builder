@@ -1,0 +1,9 @@
+.modal-content{
+    max-height: 70vh;
+    overflow:scroll;
+}
+
+.table-modal-content{
+    max-height: 100px;
+    overflow: scroll;
+}
