@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/react_workflow_builder/static/css/main.49bc1fc7.css",
-    "main.js": "/react_workflow_builder/static/js/main.a59d91aa.js",
+    "main.css": "/react_workflow_builder/static/css/main.3a89db6e.css",
+    "main.js": "/react_workflow_builder/static/js/main.915e8a7b.js",
     "index.html": "/react_workflow_builder/index.html",
-    "main.49bc1fc7.css.map": "/react_workflow_builder/static/css/main.49bc1fc7.css.map",
-    "main.a59d91aa.js.map": "/react_workflow_builder/static/js/main.a59d91aa.js.map"
+    "main.3a89db6e.css.map": "/react_workflow_builder/static/css/main.3a89db6e.css.map",
+    "main.915e8a7b.js.map": "/react_workflow_builder/static/js/main.915e8a7b.js.map"
   },
   "entrypoints": [
-    "static/css/main.49bc1fc7.css",
-    "static/js/main.a59d91aa.js"
+    "static/css/main.3a89db6e.css",
+    "static/js/main.915e8a7b.js"
   ]
 }
