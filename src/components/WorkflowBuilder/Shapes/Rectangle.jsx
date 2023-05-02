@@ -11,7 +11,6 @@ function Rectangle({ selected,data}) {
   const nodeId=useNodeId();
   const {getNode, getNodes}=useReactFlow();
   const [initialNodes, setInitialNodes]=useState(getNodes());
-  console.log('nodes',initialNodes)
   
   const handleUpdateNodeData = (e) => {
     e.preventDefault();

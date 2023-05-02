@@ -4,7 +4,7 @@ import { NodeResizer } from "@reactflow/node-resizer";
 import "@reactflow/node-resizer/dist/style.css";
 import "./Shapes.css";
 
-function StickyNote({selected,data}) {
+function Text({ selected,data}) {
   const textareaRef = useRef();
   const [nodeLabel, setNodeLabel]=useState(data.label);
 
@@ -22,6 +22,7 @@ function StickyNote({selected,data}) {
       setInitialNodes((els) => els.map((el) => (el.id === nodeId ? thisNode : el)));
     }
   };
+  
   return (
     <span
     >
@@ -48,7 +49,7 @@ function StickyNote({selected,data}) {
         onChange={(e) => handleUpdateNodeData(e)}
       />
     </span>
-  )
+  );
 }
 
-export default StickyNote;
+export default Text;

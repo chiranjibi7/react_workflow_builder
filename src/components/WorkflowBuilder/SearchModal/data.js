@@ -2,7 +2,7 @@ export const data= [
     {
       "category": "Safety Manual",
       "workflow_name": "SM-A-7",
-      "description": " The old book smelled musty and worn, its pages yellowed with age and the binding frayed at the edges.",
+      "description": " The small old book smelled musty and worn, its pages yellowed with age and the binding frayed at the edges.",
       "latest_rev": "8.7.1",
       "revision_Status": "Obsolete",
       "location": "D",
@@ -16,7 +16,7 @@ export const data= [
     {
       "category": "Maintenance",
       "workflow_name": "MA-B-2",
-      "description": " The sound old old of laughter filled the air as children played in the park, their joy contagious to all who heard it.",
+      "description": " The sound small old small of laughter filled the air as children played in the park, their joy contagious to all who heard it.",
       "latest_rev": "0.5.6",
       "revision_Status": "Pending Review",
       "location": "D",

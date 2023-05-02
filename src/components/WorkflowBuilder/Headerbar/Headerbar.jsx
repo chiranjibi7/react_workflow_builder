@@ -9,6 +9,8 @@ import { MdOutlineGrid3X3 } from "react-icons/md";
 import { CgLayoutGridSmall,CgNotes } from "react-icons/cg";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import {BsInfoCircle} from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Headerbar(props) {
   const { saveWorkflow, handleWorkflowSettings,handleSideBar} = props;
@@ -51,9 +53,15 @@ function Headerbar(props) {
         </Dropdown>
       </Tooltip>
 
-      <Button color="light" size="xs" onClick={saveWorkflow}>
+      <>
+      <Button color="light" size="xs" onClick={()=>{
+        saveWorkflow();
+        toast.success("Workflow Saved!");
+      }}>
         SAVE
       </Button>
+      <ToastContainer autoClose={1000}/>
+      </>
 
       <Dropdown
         label="SETTINGS"

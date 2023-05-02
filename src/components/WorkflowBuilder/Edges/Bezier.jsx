@@ -26,7 +26,6 @@ function Bezier({
 
   const [edgeLabel, setEdgeLabel] = useState("");
   const [showInput, setShowInput] = useState(false);
-
   return (
     <>
       <path
@@ -70,10 +69,10 @@ function Bezier({
           ) : <p  style={{
             position: "absolute",
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            background: "#ffcc00",
+            background: `${style?.labelBgColor ?? "yellow"}`,
+            color:`${style?.labelColor}`,
             fontSize: 12,
             fontWeight:"bold",
-            // padding:"4px",
             borderRadius:"4px",
             pointerEvents: "all",
           }}>{data.text}</p>}

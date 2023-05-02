@@ -5,6 +5,7 @@ import Oval from "./Oval";
 import Diamond from "./Diamond";
 import Triangle from "./Triangle";
 import StickyNote from "./StickyNote";
+import Text from "./Text";
 
 export const nodeTypes={
     circleNode:Circle,
@@ -13,5 +14,6 @@ export const nodeTypes={
     ovalNode:Oval,
     diamondNode:Diamond,
     triangleNode: Triangle,
-    stickyNoteNode: StickyNote
+    stickyNoteNode: StickyNote,
+    textNode: Text
 }

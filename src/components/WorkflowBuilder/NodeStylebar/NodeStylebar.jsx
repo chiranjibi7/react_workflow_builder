@@ -18,6 +18,10 @@ function NodeStylebar(props) {
   const [borderWidthValue, setBorderWidthValue] = useState(1);
   const [textSizeValue, setTextSizeValue] = useState(10);
 
+  const [fontBoldType,setFontBoldType]= useState("normal");
+  const [fontStyleType,setFontStyleType]= useState("normal");
+  const [fontUnderline, setFontUnderline]= useState("none");
+
   const alignLeftRef=useRef("black");
   const alignRightRef=useRef("black");
   const alignCenterRef=useRef("black");
@@ -91,15 +95,42 @@ function NodeStylebar(props) {
       </div>
       <MdFormatBold
         size={25}
-        onClick={() => handleUpdateNode({ textBold: "bold" })}
+        // onClick={() => handleUpdateNode({ textBold: "bold" })}
+        onClick={() => {
+          if(fontBoldType==="normal"){
+              setFontBoldType("bold");
+              handleUpdateNode({ textBold: "bold"});
+          }else{
+            setFontBoldType("normal");
+            handleUpdateNode({ textBold: "normal"});
+          }
+        }}
       />
       <RiItalic
         size={23}
-        onClick={() => handleUpdateNode({ textItalic: "italic" })}
+        // onClick={() => handleUpdateNode({ textItalic: "italic" })}
+        onClick={() => {
+          if(fontStyleType==="normal"){
+            setFontStyleType("italic");
+            handleUpdateNode({ textItalic: "italic"});
+        }else{
+          setFontStyleType("normal");
+          handleUpdateNode({ textItalic: "normal"});
+        }
+        }}
       />
       <RiUnderline
         size={23}
-        onClick={() => handleUpdateNode({ textDecorationLine: "underline" })}
+        // onClick={() => handleUpdateNode({ textDecorationLine: "underline" })}
+        onClick={() => {
+          if(fontUnderline==="none"){
+            setFontUnderline("underline");
+            handleUpdateNode({ textDecorationLine: "underline" });
+        }else{
+          setFontUnderline("none");
+          handleUpdateNode({ textDecorationLine: "none"});
+        }
+        }}
       />
       <div
         style={{

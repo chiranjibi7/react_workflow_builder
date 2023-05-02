@@ -48,20 +48,14 @@ function Straight({
             }}
           />
          <EdgeLabelRenderer>
-          <div
-          style={{
-            position: 'absolute',
-            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-            background: '#ffcc00',
-            fontSize: 12,
-            fontWeight:"bold",
-            pointerEvents: "all",
-            padding:"4px",
-            borderRadius:"5px"
-          }}
-        >
           {showInput ? (
             <input
+              style={{
+                position: "absolute",
+                transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+                fontSize: 12,
+                pointerEvents: "all",
+              }}
               className="focus:outline-none p-0.5"
               onChange={(e) => {
                 e.stopPropagation();
@@ -73,8 +67,16 @@ function Straight({
                 setShowInput((prevState) => !prevState);
               }}
             />
-          ) : <p>{data.text}</p>}
-        </div>
+          ) : <p  style={{
+            position: "absolute",
+            transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
+            background: `${style?.labelBgColor ?? "yellow"}`,
+            color:`${style?.labelColor}`,
+            fontSize: 12,
+            fontWeight:"bold",
+            borderRadius:"4px",
+            pointerEvents: "all",
+          }}>{data.text}</p>}
           </EdgeLabelRenderer>
         </>
       );

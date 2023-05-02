@@ -158,7 +158,7 @@ function EdgeStylebar(props) {
         placement="top"
         className="flex items-center h-6"
       >
-        <Dropdown           inline={true}
+        <Dropdown inline={true}
           placement="bottom"
           arrowIcon={false} label={ displayTargetArrow} dismissOnClick={false} size="sm" style={{padding:0}}>
           <Dropdown.Item
@@ -234,6 +234,11 @@ function EdgeStylebar(props) {
         }}/>
         </Tooltip>
       <p>Thickness</p>
+      <Tooltip
+        content="Width -"
+        placement="top"
+        className="flex items-center h-6"
+      >
       <AiOutlineMinusCircle size={23}  onClick={() => {
           setEdgeWidthValue((prevCount) => {
             if (prevCount == 1) return 1;
@@ -241,6 +246,7 @@ function EdgeStylebar(props) {
             return prevCount - 1;
           });
         }} />
+      </Tooltip>
 
     <Tooltip
         content="Label Color"
@@ -268,8 +274,40 @@ function EdgeStylebar(props) {
           border: "none",
         }}
         type="color"
-        value={currentEdge?.style?.stroke}
-        onChange={(e) => handleUpdateEdge({ edgeColor: e.target.value })}
+        value={currentEdge?.style?.labelColor}
+        onChange={(e) => handleUpdateEdge({ edgeLabelColor: e.target.value })}
+      />
+      </div>
+      </Tooltip>
+
+      <Tooltip
+        content="Label Background"
+        placement="top"
+        className="flex items-center h-10"
+      >
+      <div
+        style={{
+          border: "solid 2px #ddd",
+          position: "relative",
+          borderRadius: "50%",
+          width: "23px",
+          height: "23px",
+          background: "red",
+          overflow: "hidden",
+        }}
+      >
+     <input
+         style={{
+          position: "absolute",
+          right: "-8px",
+          top: "-8px",
+          width: "40px",
+          height: "40px",
+          border: "none",
+        }}
+        type="color"
+        value={currentEdge?.style?.labelBgColor}
+        onChange={(e) => handleUpdateEdge({ edgeLabelBgColor: e.target.value })}
       />
       </div>
       </Tooltip>

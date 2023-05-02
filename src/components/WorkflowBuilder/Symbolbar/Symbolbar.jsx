@@ -3,27 +3,30 @@ import "./Symbolbar.css";
 import { IoShapesOutline } from "react-icons/io5";
 import { RxText } from "react-icons/rx";
 import { RiStickyNoteLine } from "react-icons/ri";
-import { Controls, ControlButton } from "reactflow";
+import { Controls,ControlButton} from "reactflow";
+import {Tooltip} from "flowbite-react";
 import "reactflow/dist/style.css";
 
 function Symbolbar(props) {
   const { setIsSymbolPalleteVisible, handleAddNode } = props;
 
   return (
-    <div>
         <Controls className="symbolbar">
-        <ControlButton>
-          <RxText size={25} />
-        </ControlButton>
-        <ControlButton onClick={handleAddNode}>
-          <RiStickyNoteLine size={25} style={{ margin: "8px 0px" }} />
-        </ControlButton>
-        <ControlButton
+          <div style={{marginTop:"10px"}} onClick={()=>handleAddNode("textNode")}>
+            <RxText size={17}/>
+          </div>
+        
+          <div onClick={()=>handleAddNode("stickyNoteNode")} style={{margin:"10px 0px"}}>
+              <RiStickyNoteLine size={16}/>
+          </div>
+
+       <div
+          style={{ marginBottom: "10px" }}
           onClick={() => setIsSymbolPalleteVisible((prevState) => !prevState)}
         >
-          <IoShapesOutline size={25} style={{ marginBottom: "8px" }} />
-        </ControlButton></Controls>
-    </div>
+          <IoShapesOutline size={17}/>
+        </div>
+        </Controls>
   );
 }
 

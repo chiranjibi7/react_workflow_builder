@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
-import { Modal, TextInput, Table, Pagination, Button } from "flowbite-react";
+import { Modal, TextInput, Table, Pagination, Button} from "flowbite-react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { IoCloseOutline } from "react-icons/io5";
 import TailwindSelect from "react-tailwindcss-select";
 import { data } from "./data";
 import "./search.css";
@@ -12,6 +13,8 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
   const [location, setLocation] = useState(null);
 
   const [tableData, setTableData]=useState(data);
+
+  const [tagItem, setTagItem]=useState([]);
 
   const updatedData= useMemo(()=>{
     return data.map(item=>{
@@ -45,7 +48,6 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
       return {...item, temp:added_props}
      });
   },[data])
-  console.log(updatedData[1].temp);
 
   const handleTextChange=(e)=>{
     e.preventDefault();
@@ -53,52 +55,48 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
   };
 
   const handleSearch=()=> {
-    // Filter out any records with zero matches
     if(searchText){
-      const keywords = searchText.toLowerCase().split(' ');
-      const filteredDictionary = updatedData.filter(item => {
-        const descriptionKeywords = item.temp.toLowerCase().split(" ");
-        const matches = keywords.filter(keyword => descriptionKeywords.includes(keyword.toLowerCase()));
-        return matches.length > 0;
-      });
-    console.log(filteredDictionary)
-      // Sort the filtered dictionary based on the number of matching keywords
-      const sortedDictionary = filteredDictionary.sort((a, b) => {
-        const aKeywords = a.temp.toLowerCase().split(" ");
-        const bKeywords = b.temp.toLowerCase().split(" ");
-
-        console.log(aKeywords)
-    
-        const aMatches = keywords.filter(keyword => aKeywords.includes(keyword.toLowerCase()));
-        const bMatches = keywords.filter(keyword => bKeywords.includes(keyword.toLowerCase()));
-    
-        return bMatches.length - aMatches.length;
-      });
-      setTableData(sortedDictionary);
+    const searchKeywords = searchText.toLowerCase().split(' ');
+    const filteredData = updatedData.filter((obj) => {
+      const tempWords = obj.temp.split(" ");
+      return searchKeywords.every((keyword) =>
+        tempWords.some((word) => word.toLowerCase().includes(keyword.toLowerCase()))
+      );
+    });
+    filteredData.sort((a, b) => {
+      const aCount = a.temp.split(" ").reduce((count, word) => count + (searchKeywords.includes(word) ? 1 : 0), 0);
+      const bCount = b.temp.split(" ").reduce((count, word) => count + (searchKeywords.includes(word) ? 1 : 0), 0);
+      return bCount - aCount;
+    });
+    setTableData(filteredData);
     } else {
       setTableData(data);
     }
   };
 
   const handleCategoryChange = (value) => {
-    setCategory(value);
-    let selectedData=[];
-    value.forEach(val=>selectedData.push(val.value));
-    console.log(selectedData)
-    let filteredData=[];
-    // filteredData=data.filter(item=>item.category===value.value);
-    filteredData=data.filter(item=>{
-      return selectedData.every(data=>item.category===data)
-    })
+    if(value){
+      setCategory(value);
+      setTagItem(prevItem=>[...prevItem,value]);
+    let searchKeywords=[];
+    value.forEach(val=>searchKeywords.push(val.value.toLowerCase()));
+    const filteredData = data.filter(item=>searchKeywords.includes(item.category.toLowerCase()));
     setTableData(filteredData);
+    }else{
+      setTableData(data);
+    }
   };
 
   const handleLocationChange = (value) => {
+   if(value){
     setLocation(value);
-    let filteredData=[];
-    filteredData=data.filter(item=>item.location===value.value);
-    console.log(filteredData)
+    let searchKeywords=[];
+    value.forEach(val=>searchKeywords.push(val.value.toLowerCase()));
+    const filteredData = data.filter(item=>searchKeywords.includes(item.location.toLowerCase()));
     setTableData(filteredData);
+   }else{
+    setTableData(data);
+   }
   };
 
   let categoryItems=[];
@@ -136,6 +134,7 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
 
       <Modal.Body className="modal-content w-full">
         <div className="flex flex-col gap-3 w-full items-center mb-3">
+          {/* searchbar section */}
           <div className="flex relative w-1/2">
             <TextInput
               type="text"
@@ -149,14 +148,17 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
             <AiOutlineSearch/>
           </Button>
           </div>
+          {/* multiselect section */}
           <div className="flex gap-6 w-3/4">
             <div className="w-full flex items-center">
               <p className="font-bold">Category:</p>
               <TailwindSelect
-                value={category}
+                // value={category}
+                value={null}
                 onChange={handleCategoryChange}
                 options={categoryItems}
                 isMultiple={true}
+                className={{tagItem: () => 'isDisabled'}}
               />
             </div>
             <div className="w-full flex items-center">
@@ -177,7 +179,18 @@ function SearchModal({ isSearchModalVisible, setIsSearchModalVisible }) {
               />
             </div>
           </div>
+          {/* tags section */}
+          <div className="flex flex-wrap gap-3 w-3/4 mb-3">
+           {tagItem && tagItem.map(tag=>{
+            console.log(tag)
+            return <Button size="xs" pill={true} color="light">
+            {tag[0].value}
+            <IoCloseOutline className="ml-2" size={15}/>
+         </Button>
+           })}
+          </div>
         
+        {/* table section */}
        <Table hoverable={true} >
           <Table.Head>
             <Table.HeadCell>Category</Table.HeadCell>
