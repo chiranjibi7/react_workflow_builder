@@ -28,6 +28,7 @@ function useReactFlowEvent() {
     const [nodeClickedEvent, setNodeClickedEvent] = useState({});
 
     const [isSymbolPalleteVisible, setIsSymbolPalleteVisible] = useState(false);
+    const [isShapePalleteVisible, setIsShapePalleteVisible]= useState(false);
     const [sideBarVisible,setSideBarVisible]=useState(false);
 
     //react-flow event triggered when node is changes
@@ -106,22 +107,87 @@ function useReactFlowEvent() {
               padding: "4px"
             };
           break;
-          case "diamondNode":
+          case "conditionNode":
+            style = {
+              display: "inline-block",
+              width: "180px",
+              height: "100px",
+              backgroundColor: "#eeeeee",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#787878",
+              textAlign: "center",
+              fontSize: "10px",
+              fontWeight: "normal",
+              color: "#000000",
+              padding: "4px",
+            };
+          break;
+          case "processNode":
+            style = {
+              display: "inline-block",
+              width: "180px",
+              height: "100px",
+              backgroundColor: "#eeeeee",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#787878",
+              textAlign: "center",
+              fontSize: "10px",
+              fontWeight: "normal",
+              color: "#000000",
+              padding: "4px",
+            };
+          break;
+          case "startNode":
+            style = {
+              display: "inline-block",
+              width: "180px",
+              height: "100px",
+              backgroundColor: "#eeeeee",
+              borderWidth: "2px",
+              borderStyle: "solid",
+              borderColor: "#787878",
+              textAlign: "center",
+              fontSize: "10px",
+              fontWeight: "normal",
+              color: "#000000",
+              padding: "4px",
+            };
+          break;
+          case "parallelogramNode":
             style={
-            display: "inline-block",
-            width: "100px",
-            height: "100px",
-            backgroundColor: "red",
-            borderWidth: "1px",
-            borderStyle: "solid",
-            borderColor: "#787878",
-            textAlign: "center",
-            fontSize: "10px",
-            fontWeight: "normal",
-            color: "#000000",
-            padding: "4px",
-            transform: "rotate(-45deg)"
-          };
+              transform: "skew(-20deg)",
+              display: "inline-block",
+              width: "150px",
+              height: "80px",
+              backgroundColor: "#eeeeee",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderColor: "#787878",
+              textAlign: "center",
+              fontSize: "10px",
+              fontWeight: "normal",
+              color: "#000000",
+              padding: "4px",
+            };
+          break;
+          case "ovalNode":
+            style={
+              display: "inline-block",
+              width: "150px",
+              height: "100px",
+              backgroundColor: "#eeeeee",
+              borderRadius: "70%",
+              borderWidth: "1px",
+              borderStyle: "solid",
+              borderColor: "#787878",
+              textAlign: "center",
+              fontSize: "10px",
+              fontWeight: "normal",
+              color: "#000000",
+              padding: "4px"
+            };
           break;
         }
         const newNode = {
@@ -139,6 +205,7 @@ function useReactFlowEvent() {
         setIsEdgeClicked((prevState) => !prevState);
         setClickedEdge(edge);
         setEdgeClickedEvent(event);
+        setIsNodeClicked(false);
       };
 
       const onNodeDragStop=(node)=>{
@@ -162,12 +229,18 @@ function useReactFlowEvent() {
         setIsNodeClicked((prevState) => !prevState);
         setClickedNode(node);
         setNodeClickedEvent(event);
+        setIsEdgeClicked(false);
       }
     
       const handlePaneClick=()=>{
         setIsSymbolPalleteVisible(false);
+        setIsShapePalleteVisible(false);
         setIsEdgeClicked(false);
         setIsNodeClicked(false);
+      }
+
+      const handleEdgeDelete=()=>{
+        setIsEdgeClicked(false);
       }
     
       const handleMoveStart=() => {
@@ -312,7 +385,7 @@ function useReactFlowEvent() {
         }
       };
     
-      return {nodes,edges,setRfInstance,onNodesChange,onEdgesChange,onConnect,isEdgeClicked,clickedEdge,edgeClickedEvent,isNodeClicked,clickedNode,nodeClickedEvent,onDragOver,onDrop,reactFlowWrapper,handleNodeClick,handleEdgeClick,handlePaneClick,handleMoveStart,isSymbolPalleteVisible, setIsSymbolPalleteVisible,handleAddNode,handleUpdateNode,handleUpdateEdge,saveWorkflow,handleSideBar,sideBarVisible,setSideBarVisible}
+      return {nodes,edges,setRfInstance,onNodesChange,onEdgesChange,onConnect,isEdgeClicked,clickedEdge,edgeClickedEvent,isNodeClicked,clickedNode,nodeClickedEvent,onDragOver,onDrop,reactFlowWrapper,handleNodeClick,handleEdgeClick,handlePaneClick,handleMoveStart,isSymbolPalleteVisible, setIsSymbolPalleteVisible,isShapePalleteVisible,setIsShapePalleteVisible, handleAddNode,handleUpdateNode,handleUpdateEdge, handleEdgeDelete,saveWorkflow,handleSideBar,sideBarVisible,setSideBarVisible}
     }
 
 export default useReactFlowEvent

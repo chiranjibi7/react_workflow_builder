@@ -2,13 +2,14 @@ import React from "react";
 import "./Symbolbar.css";
 import { IoShapesOutline } from "react-icons/io5";
 import { RxText } from "react-icons/rx";
-import { RiStickyNoteLine } from "react-icons/ri";
+import { RiStickyNoteFill } from "react-icons/ri";
+import {FcFlowChart} from "react-icons/fc";
 import { Controls,ControlButton} from "reactflow";
 import {Tooltip} from "flowbite-react";
 import "reactflow/dist/style.css";
 
 function Symbolbar(props) {
-  const { setIsSymbolPalleteVisible, handleAddNode } = props;
+  const { setIsSymbolPalleteVisible,setIsShapePalleteVisible,handleAddNode } = props;
 
   return (
         <Controls className="symbolbar">
@@ -17,14 +18,27 @@ function Symbolbar(props) {
           </div>
         
           <div onClick={()=>handleAddNode("stickyNoteNode")} style={{margin:"10px 0px"}}>
-              <RiStickyNoteLine size={16}/>
+              <RiStickyNoteFill size={18} color="#20de99"/>
           </div>
 
        <div
           style={{ marginBottom: "10px" }}
-          onClick={() => setIsSymbolPalleteVisible((prevState) => !prevState)}
+          onClick={() => {
+            setIsSymbolPalleteVisible((prevState) => !prevState);
+            setIsShapePalleteVisible(false);
+          }}
         >
-          <IoShapesOutline size={17}/>
+          <IoShapesOutline size={18} color="red"/>
+        </div>
+
+        <div
+          style={{ marginBottom: "10px" }}
+          onClick={() => {
+            setIsShapePalleteVisible((prevState) => !prevState);
+            setIsSymbolPalleteVisible(false);
+          }}
+        >
+          <FcFlowChart size={22} color="black"/>
         </div>
         </Controls>
   );

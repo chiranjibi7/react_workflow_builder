@@ -6,6 +6,9 @@ import Diamond from "./Diamond";
 import Triangle from "./Triangle";
 import StickyNote from "./StickyNote";
 import Text from "./Text";
+import Condition from "./Condition";
+import Process from "./Process";
+import Start from "./Start";
 
 export const nodeTypes={
     circleNode:Circle,
@@ -15,5 +18,8 @@ export const nodeTypes={
     diamondNode:Diamond,
     triangleNode: Triangle,
     stickyNoteNode: StickyNote,
-    textNode: Text
+    textNode: Text,
+    conditionNode: Condition,
+    processNode: Process,
+    startNode: Start
 }

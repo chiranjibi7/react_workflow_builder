@@ -28,46 +28,58 @@ function Diamond({selected,data}) {
     }
   };
 
+  const handleSize = 10; // Size of the resizer handles
+
+  const handleStyle = {
+    position: 'absolute',
+    width: `${handleSize}px`,
+    height: `${handleSize}px`,
+    background: '#fff',
+    border: '1px solid #000',
+    borderRadius: '50%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1,
+  };
+
+
   return (
-  //   <span>
-  //      <NodeResizer
-  //       isVisible={selected}
-  //       color="#ff0071"
-  //       lineStyle={{ width: "0px", height: "0px" }}
-  //       handleStyle={{ width: "7px", height: "7px", borderRadius: "50%" }}
-  //       minWidth={100}
-  //       minHeight={30}
-  //     />
-  //     {/* <Handle type="source" position="top" id="1" style={{background:"red",left:0}}/>
-  //     <Handle type="source" position="bottom" id="2" style={{background:"red",marginLeft:"51%"}}/>
-  //     <Handle type="source" position="left" id="3" style={{background:"red",marginTop:"51%"}} />
-  //     <Handle type="source" position="right" id="4" style={{background:"red",top:0}}/>  */}
+    <div className='diamond-node'>
+       <NodeResizer
+        isVisible={selected}
+        color="#ff0071"
+        lineStyle={{ width: "0px", height: "0px" }}
+        handleStyle={{ width: "7px", height: "7px", borderRadius: "50%"}}
+        minWidth={100}
+        minHeight={30}
+      />
+      {/* <Handle type="source" position="top" id="1" style={{background:"red",left:0,width:"10px",height:"10px"}}/>
+      <Handle type="source" position="bottom" id="2" style={{background:"red",marginLeft:"51%"}}/>
+      <Handle type="source" position="left" id="3" style={{background:"red",marginTop:"51%"}} />
+      <Handle type="source" position="right" id="4" style={{background:"red",top:0}}/>  */}
 
-  //     <Handle type="source" position="top" id="1" />
-  //     <Handle type="source" position="bottom" id="2" />
-  //     <Handle type="source" position="left" id="3" />
-  //     <Handle type="source" position="right" id="4" /> 
-  //     <textarea
-  //       ref={textareaRef}
-  //       className='diamond-node'
-  //       style={{ textDecoration: data?.textUnderline }}
-  //       readOnly={true}
-  //       onDoubleClick={() => {
-  //         textareaRef.current.readOnly = false;
-  //       }}
-  //       onBlur={() => {
-  //         textareaRef.current.readOnly = true;
-  //       }}
-  //       value={nodeLabel}
-  //       onChange={(e) => handleUpdateNodeData(e)}
-  //     />
-  // </span>
+      <Handle type="source" position="top" id="1"/>
+      <Handle type="source" position="bottom" id="2" />
+      <Handle type="source" position="left" id="3" />
+      <Handle type="source" position="right" id="4" /> 
+      <textarea
+        ref={textareaRef}
+        className='diamond-node'
+        style={{ textDecoration: data?.textUnderline }}
+        readOnly={true}
+        onDoubleClick={() => {
+          textareaRef.current.readOnly = false;
+        }}
+        onBlur={() => {
+          textareaRef.current.readOnly = true;
+        }}
+        value={nodeLabel}
+        onChange={(e) => handleUpdateNodeData(e)}
+      />
+  </div>
 
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <polygon points="50,5 90,50 50,95 10,50" fill="none" stroke="black"/>
-</svg>
-
-  )
+  );
 }
 
 export default Diamond

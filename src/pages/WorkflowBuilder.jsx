@@ -13,14 +13,15 @@ import {
   NodeStylebar,
   Headerbar,
   SideBar,
-  SearchModal
+  SearchModal,
+  ShapesPallete
 } from "../components";
 import useReactFlowEvent from "../hooks/useReactFlowEvent";
 import "../App.css";
 
 function WorkflowBuilder() {
 
-  const {nodes,edges,setRfInstance,onNodesChange,onEdgesChange,onConnect,isEdgeClicked,clickedEdge,edgeClickedEvent,isNodeClicked,clickedNode,nodeClickedEvent,onDragOver,onDrop,reactFlowWrapper,handleNodeClick,handleEdgeClick,handlePaneClick,handleMoveStart,isSymbolPalleteVisible, setIsSymbolPalleteVisible,handleAddNode,handleUpdateNode,handleUpdateEdge,saveWorkflow,handleSideBar,sideBarVisible,setSideBarVisible}=useReactFlowEvent();
+  const {nodes,edges,setRfInstance,onNodesChange,onEdgesChange,onConnect,isEdgeClicked,clickedEdge,edgeClickedEvent,isNodeClicked,clickedNode,nodeClickedEvent,onDragOver,onDrop,reactFlowWrapper,handleNodeClick,handleEdgeClick,handlePaneClick,handleMoveStart, handleEdgeDelete,isSymbolPalleteVisible, isShapePalleteVisible,setIsShapePalleteVisible,setIsSymbolPalleteVisible,handleAddNode,handleUpdateNode,handleUpdateEdge,saveWorkflow,handleSideBar,sideBarVisible,setSideBarVisible}=useReactFlowEvent();
 
   const [diagramBgColor, setDiagramBgColor] = useState("#eee");
   const [diagramVariantType, setDiagramVariantType] = useState("lines");
@@ -71,6 +72,7 @@ function WorkflowBuilder() {
           onNodeClick={(event, node)=> handleNodeClick(event,node)}
           onPaneClick={handlePaneClick}
           onMoveStart={handleMoveStart}
+          onEdgesDelete={handleEdgeDelete}
         >
           <Background
             color={patternColor}
@@ -102,9 +104,11 @@ function WorkflowBuilder() {
 
       <Symbolbar
         setIsSymbolPalleteVisible={setIsSymbolPalleteVisible}
+        setIsShapePalleteVisible={setIsShapePalleteVisible}
         handleAddNode={handleAddNode}
       />
       {isSymbolPalleteVisible && <SymbolPallete />}
+      {isShapePalleteVisible && <ShapesPallete/>}
       <Headerbar
         handleSideBar={handleSideBar}
         saveWorkflow={saveWorkflow}

@@ -15,7 +15,7 @@ import "../../../App.css";
 function NodeStylebar(props) {
   const { handleUpdateNode, nodeClickedEvent, clickedNode, nodes } = props;
 
-  const [borderWidthValue, setBorderWidthValue] = useState(1);
+  const [borderWidthValue, setBorderWidthValue] = useState(2);
   const [textSizeValue, setTextSizeValue] = useState(10);
 
   const [fontBoldType,setFontBoldType]= useState("normal");
@@ -242,7 +242,7 @@ function NodeStylebar(props) {
         size={23}
         onClick={() => {
           setBorderWidthValue((prevCount) => {
-            if (prevCount == 1) return 1;
+            if (prevCount == 2) return 2;
             handleUpdateNode({ borderWidth: prevCount - 1 });
             return prevCount - 1;
           });
